@@ -12,3 +12,13 @@ proc convert(directory: string, contentType: string): string {.exportpy.} =
 
 proc download(uploadId: string, filename: string): void {.exportpy.} =
     convertPdfDownload(uploadId, filename)
+
+proc all(directory: string, contentType: string, filename: string): void {.exportpy.} =
+    echo getStatus()
+    echo getResultList()
+    let uploadId = extractUploadId(uploadImgSeq(listImgFiles(directory), contentType))
+    discard convertImg(uploadId, contentType)
+    convertPdfDownload(uploadId, filename)
+
+proc benchBase64Img(directory: string): string {.exportpy.} =
+    echo listImgFiles(directory)

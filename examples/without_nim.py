@@ -6,7 +6,7 @@ import requests
 
 
 def upload():
-    images_b64 = _create_imageb64_list("test_files", "jpg")
+    images_b64 = create_imageb64_list("test_files", "jpg")
     data = json.dumps({"contentType": "image/jpeg", "images": images_b64})
     r = requests.post("https://ebook-homebrew.herokuapp.com/data/upload", data=data).json()
     upload_id = r["upload_id"]
@@ -29,15 +29,15 @@ def download(upload_id):
 
 def status():
     r = requests.get("https://ebook-homebrew.herokuapp.com/status").json()
-    print(r)
+    return r
 
 
 def list():
     r = requests.get("https://ebook-homebrew.herokuapp.com/data/upload/list").json()
-    print(r)
+    return r
 
 
-def _create_imageb64_list(directory, extension):
+def create_imageb64_list(directory, extension):
     images_b64 = []
     images = glob.glob(os.path.join(directory, "*." + extension))
     for image in images:
@@ -46,8 +46,12 @@ def _create_imageb64_list(directory, extension):
     return images_b64
 
 
-if __name__ == "__main__":
-    status()
-    list()
+def main():
+    print(status())
+    print(list())
     upload_id = upload()
     download(upload_id)
+
+
+if __name__ == "__main__":
+    main()

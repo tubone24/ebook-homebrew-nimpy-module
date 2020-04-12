@@ -9,5 +9,9 @@ def main():
     ebook_homebrew.download(upload_id, "result.pdf")
 
 
+def main2():
+    ebook_homebrew.all("test_files", "image/jpeg", "result.pdf")
+
+
 if __name__ == "__main__":
-    main()
+    main2()

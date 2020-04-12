@@ -13,7 +13,6 @@ proc convertBase64*(filePath: string): string =
     let f : File = open(filePath , FileMode.fmRead)
     defer :
       close(f)
-      echo "closed"
     return encode(f.readAll())
 
 proc listImgFile*(filePath: string): seq[string] =
