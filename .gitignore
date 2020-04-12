@@ -1,3 +1,10 @@
 nimcache/
 nimblecache/
 htmldocs/
+
+# idea
+.idea
+
+# build
+ebook_homebrew.pyd
+ebook_homebrew.so
